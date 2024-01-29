@@ -45,6 +45,9 @@ public class MiPilaTests {
 		pila.push(7);
 		pila.push(5);
 		pila.push(2);
+		pila.push(8);
+		pila.push(3);
+		System.out.println(pila.contains(4));
 		System.out.println(pila.contains(5));
 		System.out.println(pila.toString());
 		
