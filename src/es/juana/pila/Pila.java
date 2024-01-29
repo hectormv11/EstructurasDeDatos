@@ -6,7 +6,7 @@ public interface Pila<T> {
     void push(T elemento);
 
     // Método para eliminar y devolver el elemento superior de la pila
-    void pop();
+    T pop();
 
     // Método para obtener el elemento superior de la pila sin quitarlo
     T top();
@@ -28,8 +28,5 @@ public interface Pila<T> {
 
     // Método para obtener un array con los elementos de la pila
     Object[] toArray();
-    
-    //Método que asegura que en el array hay sitio suficiente
-    void asegurarCapacidad();
 
 }
