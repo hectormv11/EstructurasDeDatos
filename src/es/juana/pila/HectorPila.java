@@ -51,6 +51,7 @@ public class HectorPila <T> implements Pila <T> {
 			}
 
 		}
+		numElementos--;
 
 		return valor;
 

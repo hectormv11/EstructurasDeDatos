@@ -11,6 +11,15 @@ public class MiPilaTests {
 	HectorPila<Integer> pila = new HectorPila<Integer>();
 	
 	@Test
+	void test() {
+		HectorPila<Integer> pila = new HectorPila<Integer>();
+		pila.push(1);
+		pila.push(2);
+		String sPila = pila.toString();
+		assertEquals("[1,2]", sPila);
+ 	}
+	
+	@Test
 	void testInsertar() {
 		pila.push(5);
 		assertEquals("[5]", pila.toString());
