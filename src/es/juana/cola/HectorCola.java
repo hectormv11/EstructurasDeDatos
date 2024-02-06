@@ -30,7 +30,7 @@ public class HectorCola<T> implements Cola<T>{
 	@Override
 	public T dequeue() {
 		T valor = (T) "No se ha podido encontrar objetos";
-		
+
 		if(numeros > 0) {
 
 			if(cola[head] != null) {
@@ -52,9 +52,9 @@ public class HectorCola<T> implements Cola<T>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public T head() {
-		
+
 		T valor = (T) "No hay";
-		
+
 		if(!isEmpty()) {
 			valor = (T) cola[head];
 		}
@@ -74,31 +74,63 @@ public class HectorCola<T> implements Cola<T>{
 	public int size() {
 
 		return cola.length;
-		
+
 	}
 
 	@Override
 	public void clear() {
+		
+		Object[] nuevaCola = new Object[0];
+		numeros = 0;
+		cola = nuevaCola;
 
-		
-		
 	}
 
 	@Override
 	public boolean contains(T elemento) {
-		// TODO Auto-generated method stub
+
+		for (int i = 0; i < cola.length; i++) {
+			
+			if(cola[i] != null) {
+				
+				if(cola[i] == elemento) {
+					return true;
+				}
+				
+			}
+			
+		}
+		
 		return false;
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Object[] nuevaCola = new Object[cola.length];		
+		for (int i = 0; i < nuevaCola.length; i++) {
+			nuevaCola[i] = cola[i];
+		}
+		
+		return nuevaCola;
 	}
 
 	@Override
 	public void bubbleSort() {
-		// TODO Auto-generated method stub
+		
+		boolean estaBien = false;
+		
+		while(estaBien = false){
+			
+			for (int i = 0; i < cola.length; i++) {
+				
+				
+				
+			}
+			
+			
+			
+		}
 
 	}
 

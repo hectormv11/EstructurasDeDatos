@@ -1,31 +1,109 @@
 package es.juana.cola;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MiColaTest {
-	
+
 	HectorCola<Integer> cola = new HectorCola<Integer>();
 	
-	@Test
-	void test() {
+	//-------------------------------------//Tests//-------------------------------------//
+	
+	@BeforeEach
+	public void antesDe() {
 		
 		cola.enqueue(1);
 		cola.enqueue(7);
 		cola.enqueue(5);
+		
+	}
+	
+	
+	@Test
+	void añadirTest() {
+
 		cola.dequeue();
-		System.out.println(cola.toString());
-		System.out.println("Tamaño = " + cola.size());
-		System.out.println("Esta vacia = " + cola.isEmpty());
 		assertEquals("[7,5]", cola.toString());
-		System.out.println("El primer elemento es = " + cola.head());
+		
+	}	
+	
+	@Test
+	void borrarUnoTest() {
+
 		cola.dequeue();
 		cola.dequeue();
-		System.out.println(cola.toString());
-		System.out.println("Esta vacia = " + cola.isEmpty());
-		System.out.println("Tamaño = " + cola.size());
-		System.out.println("El primer elemento es = " + cola.head());
- 	}
+		assertEquals("[5]", cola.toString());
+		
+	}
+	
+	@Test
+	void contieneTest() {
+			
+		assertTrue(cola.contains(7));
+	}	
+	
+	@Test	
+	void borrarTest() {	
+		
+		cola.clear();
+		assertEquals("[]", cola.toString());
+	}	
+		
+	@Test	
+	void tamañoTest() {	
+		
+		assertEquals(3, cola.size());
+	}
+		
+	@Test	
+	void primerElementoTest() {	
+		
+		Object obj = 1;
+		assertEquals(obj, cola.head());
+	}
+		
+	@Test	
+	void estaVaciaTest() {	
+		
+		cola.clear();
+		assertTrue(cola.isEmpty());
+	}	
+		
+	@Test	
+	void toArrayTest() {
+		
+		Object[] aux = cola.toArray();
+		String str = devolverArray(aux);
+		
+		assertEquals("[1,7,5]", str);
+		
+	}
+	
+	//-------------------------------------//Metodos//-------------------------------------//
+
+	public String devolverArray(Object[] otra) {
+
+		StringBuffer str = new StringBuffer();
+
+		str.append("[");
+
+		for (int i = 0; i < otra.length; i++) {
+			if(otra[i] != null) {
+				str.append(otra[i]);
+
+				if(i != otra.length -1) {
+
+					str.append(",");
+
+				}
+			}
+		}
+		str.append("]");
+		return str.toString(); 
+	}
 
 }

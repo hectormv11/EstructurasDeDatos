@@ -16,38 +16,36 @@ public class HectorPila <T> implements Pila <T> {
 	@Override
 	public void push(T elemento) {
 
-		for (int i = 0; i < pila.length; i++) {
-
-			if(numElementos == pila.length) {
-				Object[] aux = new Object[pila.length+1];
-				for (int j = 0; j < pila.length; j++) {
-					aux[j] = pila[j];
-				}
-				pila = aux;
+		if(numElementos == pila.length) {
+			Object[] aux = new Object[pila.length+1];
+			for (int j = 0; j < pila.length; j++) {
+				aux[j] = pila[j];
 			}
-			if(pila[i] == null) {
-				pila[i] = elemento;
-				numElementos++;
-			}
+			pila = aux;
+		}
+		if(pila[pila.length-1] == null) {
+			pila[pila.length-1] = elemento;
+			numElementos++;
 		}
 	}
 
+
 	@Override
 	public T pop() {
-		
+
 		T valor = null;
 		for (int i = 0 ; i < pila.length; i++) {
 
 			if(i == pila.length-1) {
 				valor = (T) pila[i];
 				pila[i] = null;
-				
+
 				Object[] aux = new Object[pila.length-1];
 				for (int j = 0; j < pila.length-1; j++) {
 					aux[j] = pila[j];
 				}
 				pila = aux;
-				
+
 			}
 
 		}
@@ -90,7 +88,7 @@ public class HectorPila <T> implements Pila <T> {
 
 	@Override
 	public void clear() {
-		
+
 		Object[] aux = new Object[1];
 		for (int j = 0; j < aux.length; j++) {
 			aux[j] = pila[j];
@@ -105,7 +103,7 @@ public class HectorPila <T> implements Pila <T> {
 			}
 
 		}
-		
+
 	}
 
 	@Override
@@ -123,13 +121,13 @@ public class HectorPila <T> implements Pila <T> {
 
 	@Override
 	public Object[] toArray() {
-		
+
 		Object[] array = new Object[pila.length];
-		
+
 		for (int j = 0; j < array.length; j++) {
 			array[j] = pila[j];
 		}
-		
+
 		return array;
 	}
 
