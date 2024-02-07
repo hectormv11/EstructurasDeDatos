@@ -2,7 +2,7 @@ package es.juana.lista;
 
 public class LinkedListHector<T> implements LinkedList<T> {
 
-	Nodo<T> inicial;
+	Nodo<T> inicial = null;
 
 	@Override
 	public void add(T elemento) {
@@ -23,15 +23,38 @@ public class LinkedListHector<T> implements LinkedList<T> {
 	@Override
 	public void add(T elemento, int index) {
 
-
+		Nodo<T> nuevoNodo = new Nodo<T>(elemento);
+		if (inicial == null) {
+			inicial = nuevoNodo;
+		} else {
+			Nodo<T> actual = inicial;
+			while (actual.siguiente != null) {
+				actual = actual.siguiente;
+			}
+			actual.siguiente = nuevoNodo;
+		}
 
 	}
 
 	@Override
 	public T remove(int index) {
+		
+		int vueltas = 0;
+		
+		T devolver = null;
 
-
-		return null;
+		Nodo<T> actual = inicial;
+		while (vueltas != size()) {
+			if(vueltas == index) {
+				devolver = actual.siguiente.getValor();
+				actual.siguiente = actual.siguiente.siguiente;
+				break;
+			}
+			actual = actual.siguiente;
+			vueltas++;
+		}
+		
+		return devolver;
 	}
 
 	@Override
@@ -50,9 +73,17 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 	@Override
 	public int size() {
+		
+		int tamaño = 0;
+		
+		Nodo<T> actual = inicial;
+		while (actual.siguiente != null) {
+			actual = actual.siguiente;
+			tamaño++;
+		}
 
 
-		return 0;
+		return tamaño;
 	}
 
 	@Override
@@ -75,5 +106,26 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 		return null;
 	}
+	
+	public String toString() {
+		
+		StringBuffer str = new StringBuffer();
+
+		str.append("[");
+
+		Nodo<T> actual = inicial;
+		while (actual.siguiente != null) {
+			
+			str.append(actual.getValor());
+			str.append(",");
+			actual = actual.siguiente;
+
+		}
+		str.append(actual.getValor());
+
+		str.append("]");
+		return str.toString();
+	}
+
 
 }
