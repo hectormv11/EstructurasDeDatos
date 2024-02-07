@@ -26,7 +26,8 @@ public class LinkedListTests {
 		lista.add(2);
 		lista.add(3);
 		lista.add(4);
-		System.out.println(lista.remove(1));
+		System.out.println(lista.remove(2));
+		System.out.println(lista.remove(2));
 		String slista = lista.toString();
 		assertEquals("[1,4]", slista);
  	}

@@ -38,22 +38,27 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 	@Override
 	public T remove(int index) {
-		
+
 		int vueltas = 0;
-		
+
 		T devolver = null;
 
 		Nodo<T> actual = inicial;
-		while (vueltas != size()) {
-			if(vueltas == index) {
-				devolver = actual.siguiente.getValor();
-				actual.siguiente = actual.siguiente.siguiente;
-				break;
+		if(index !=  1) {
+			while (vueltas != size()) {
+				if(vueltas == index -2) {
+					devolver = actual.siguiente.getValor();
+					actual.siguiente = actual.siguiente.siguiente;
+					break;
+				}
+				actual = actual.siguiente;
+				vueltas++;
 			}
-			actual = actual.siguiente;
-			vueltas++;
 		}
-		
+		else {
+			devolver = actual.getValor();
+			inicial = actual.siguiente;
+		}
 		return devolver;
 	}
 
@@ -73,9 +78,9 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 	@Override
 	public int size() {
-		
+
 		int tamaño = 0;
-		
+
 		Nodo<T> actual = inicial;
 		while (actual.siguiente != null) {
 			actual = actual.siguiente;
@@ -106,16 +111,16 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 		return null;
 	}
-	
+
 	public String toString() {
-		
+
 		StringBuffer str = new StringBuffer();
 
 		str.append("[");
 
 		Nodo<T> actual = inicial;
 		while (actual.siguiente != null) {
-			
+
 			str.append(actual.getValor());
 			str.append(",");
 			actual = actual.siguiente;
