@@ -58,14 +58,17 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 		Nodo<T> actual = inicial;
 		if(index !=  1) {
-			while (vueltas != size()) {
-				if(vueltas == index -2) {
-					devolver = actual.siguiente.getValor();
-					actual.siguiente = actual.siguiente.siguiente;
-					break;
+			if(index > 1 && index < size()) {
+
+				while (vueltas != size()) {
+					if(vueltas == index -2) {
+						devolver = actual.siguiente.getValor();
+						actual.siguiente = actual.siguiente.siguiente;
+						break;
+					}
+					actual = actual.siguiente;
+					vueltas++;
 				}
-				actual = actual.siguiente;
-				vueltas++;
 			}
 		}
 		else {
@@ -75,17 +78,34 @@ public class LinkedListHector<T> implements LinkedList<T> {
 		return devolver;
 	}
 
-	@Override
-	public void remove(T elemento) {
+	public void removeElemento(T elemento) {
 
+		int vueltas = 0;
 
+		if (inicial.getValor() == elemento) {
+			inicial = inicial.siguiente;
+		} else {
+			Nodo<T> actual = inicial;
 
+			while (vueltas != size()-1) {
+				if(actual.siguiente.getValor() == elemento) {
+
+					actual.siguiente = actual.siguiente.siguiente;
+					break;
+
+				}
+				actual = actual.siguiente;
+				vueltas++;
+			}
+		}
 	}
 
 	@Override
 	public boolean isEmpty() {
 
-
+		if(inicial == null) {
+			return true;
+		}
 		return false;
 	}
 
@@ -93,11 +113,11 @@ public class LinkedListHector<T> implements LinkedList<T> {
 	public int size() {
 
 		int tamaño = 1;
-		
+
 		if(inicial == null) {
 			tamaño = 0;
 		}
-		
+
 
 		Nodo<T> actual = inicial;
 		while (actual.siguiente != null) {
@@ -116,28 +136,43 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 	}
 
-	@Override
 	public boolean contains(Object elemento) {
 
+		int vueltas = 0;
 
+		if (inicial.getValor() == elemento) {
+			return true;
+		} else {
+			Nodo<T> actual = inicial;
+
+			while (vueltas != size()-1) {
+				if(actual.siguiente.getValor() == elemento) {
+
+					return true;
+
+				}
+				actual = actual.siguiente;
+				vueltas++;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public Object[] toArray() {
-		
+
 		Object[] array = new Object[size()];
-		
+
 		int vuelta = 0;
 
 		Nodo<T> actual = inicial;
 		array[vuelta] = actual.getValor();
 		while (actual.siguiente != null) {
-			
+
 			array[vuelta] = actual.getValor();
 			actual = actual.siguiente;
 			vuelta++;
-			
+
 		}
 		array[vuelta] = actual.getValor();
 		return array;
@@ -145,20 +180,22 @@ public class LinkedListHector<T> implements LinkedList<T> {
 
 	public String toString() {
 
+
 		StringBuffer str = new StringBuffer();
 
 		str.append("[");
+		if(inicial != null) {
 
-		Nodo<T> actual = inicial;
-		while (actual.siguiente != null) {
+			Nodo<T> actual = inicial;
+			while (actual.siguiente != null) {
 
+				str.append(actual.getValor());
+				str.append(",");
+				actual = actual.siguiente;
+
+			}
 			str.append(actual.getValor());
-			str.append(",");
-			actual = actual.siguiente;
-
 		}
-		str.append(actual.getValor());
-
 		str.append("]");
 		return str.toString();
 	}

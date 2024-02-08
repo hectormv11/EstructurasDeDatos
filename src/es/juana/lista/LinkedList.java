@@ -12,7 +12,7 @@ public interface LinkedList<T> {
     T remove(int index);
 
     // Método que busca y elimina un elemento concreto
-    void remove(T elemento);
+    void removeElemento(T elemento);
 
     // Método para verificar si la lista está vacía
     boolean isEmpty();

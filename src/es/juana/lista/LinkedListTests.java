@@ -1,7 +1,7 @@
 package es.juana.lista;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,10 +27,10 @@ public class LinkedListTests {
 		lista.add(2);
 		lista.add(3);
 		lista.add(4);
-		System.out.println(lista.remove(2));
+		System.out.println(lista.remove(-1));
 		System.out.println(lista.remove(2));
 		String slista = lista.toString();
-		assertEquals("[1,4]", slista);
+		assertEquals("[1,3,4]", slista);
  	}
 	
 	@Test
@@ -46,16 +46,18 @@ public class LinkedListTests {
 		assertEquals("[1,2,9,3,4]", slista);
  	}
 	
-	/*@Test
+	@Test
 	void testRemove2() {
 		
 		lista.add(1);
 		lista.add(2);
 		lista.add(3);
 		lista.add(4);
+		lista.removeElemento(99);
+		lista.removeElemento(3);
 		String slista = lista.toString();
-		assertEquals("[1,2,3,4]", slista);
- 	}*/
+		assertEquals("[1,2,4]", slista);
+ 	}
 	
 	@Test
 	void testToArray() {
@@ -68,6 +70,32 @@ public class LinkedListTests {
 		String str = arrayToString(lista.toArray());
 		assertEquals("[1,2,3,4,22]", str);
  	}
+	
+	@Test
+	void testIsEmptyAndClear() {
+		
+		lista.add(1);
+		lista.add(2);
+		lista.add(3);
+		lista.add(4);
+		lista.add(22);
+		lista.clear();
+		String str = lista.toString();
+		assertEquals("[]", str);
+		assertTrue(lista.isEmpty());
+ 	}
+	
+	@Test
+	void testContiene() {
+		
+		lista.add(1);
+		lista.add(2);
+		lista.add(3);
+		lista.add(4);
+		lista.add(22);
+		assertTrue(lista.contains(3));
+ 	}
+	
 	
 	//----------------------//Metodos//----------------------//
 	
