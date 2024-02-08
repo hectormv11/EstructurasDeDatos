@@ -78,7 +78,7 @@ public class LinkedListHector<T> implements LinkedList<T> {
 		return devolver;
 	}
 
-	public void removeElemento(T elemento) {
+	public void remove(T elemento) {
 
 		int vueltas = 0;
 

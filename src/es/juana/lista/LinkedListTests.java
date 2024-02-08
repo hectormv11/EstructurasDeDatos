@@ -53,8 +53,12 @@ public class LinkedListTests {
 		lista.add(2);
 		lista.add(3);
 		lista.add(4);
-		lista.removeElemento(99);
-		lista.removeElemento(3);
+		
+		Integer i = 99;
+		Integer j = 3;
+		
+		lista.remove(i);
+		lista.remove(j);
 		String slista = lista.toString();
 		assertEquals("[1,2,4]", slista);
  	}
