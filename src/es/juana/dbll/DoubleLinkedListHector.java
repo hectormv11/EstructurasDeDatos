@@ -22,6 +22,15 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 			tail = nuevoNodo;
 		}
 		
+		/*if(head == null && tail == null) {
+			head = nuevoNodo;
+			tail = nuevoNodo;
+		} else {
+			tail.siguiente = nuevoNodo;
+			nuevoNodo.anterior = tail;
+			tail = nuevoNodo;
+		}*/
+		
 	}
 
 	@Override
