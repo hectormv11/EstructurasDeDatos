@@ -1,7 +1,7 @@
 package es.juana.dbll;
 
 public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
-	
+
 	Nodo<T> head = null;
 	Nodo<T> tail = null;
 
@@ -21,7 +21,7 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 			nuevoNodo.anterior = actual;
 			tail = nuevoNodo;
 		}
-		
+
 		/*if(head == null && tail == null) {
 			head = nuevoNodo;
 			tail = nuevoNodo;
@@ -30,13 +30,13 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 			nuevoNodo.anterior = tail;
 			tail = nuevoNodo;
 		}*/
-		
+
 	}
 
 	@Override
 	public void add(T elemento, int index) {
 
-		int vueltas = 0;
+		int vueltas = 1;
 
 		Nodo<T> nuevoNodo = new Nodo<T>(elemento);
 		if (head == null) {
@@ -44,41 +44,104 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 			tail = nuevoNodo;
 		} else {
 			Nodo<T> actual = head;
-			if(index !=  1) {
+			if(index !=  0) {
 				while (vueltas != size()) {
-					if(vueltas == index -2) {
+					if(vueltas == index) {
 
 						nuevoNodo.siguiente = actual.siguiente;
 						actual.siguiente = nuevoNodo;
+
 						break;
+
 					}
 					actual = actual.siguiente;
 					vueltas++;
 				}
-			}
-			else {
-				nuevoNodo.siguiente = head.siguiente;
+			}else {
+
+				nuevoNodo.siguiente = head;
 				head = nuevoNodo;
+				nuevoNodo.siguiente.anterior = nuevoNodo;
+
 			}
 		}
-		
 	}
-	
+
 	@Override
 	public T get(int index) {
-		// TODO Auto-generated method stub
+
+		int vueltas = 0;
+		Nodo<T> actual = head;
+		while (vueltas != size()) {
+			if(vueltas == index) {
+
+				return actual.getValor();
+
+			}
+			actual = actual.siguiente;
+			vueltas++;
+		}
+
 		return null;
 	}
 
 	@Override
 	public T remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+
+		int vueltas = 0;
+		T devolver = null;
+
+		if (head == null) {
+
+			return null;
+
+		}
+		Nodo<T> actual = head;
+		if(index ==  0) {
+			
+			devolver = actual.getValor();
+			head = actual.siguiente;
+			
+		}else if(index == size()-1){
+			
+			devolver = tail.getValor();
+			actual = tail.anterior;
+			actual.siguiente = null;
+			tail = actual;
+			
+			
+		}else {
+			while (vueltas != size()) {
+				if(vueltas == index) {
+
+					devolver = actual.getValor();
+					actual.siguiente = actual.siguiente.siguiente;
+					
+				}
+				actual = actual.siguiente;
+				vueltas++;
+			}
+		}
+		return devolver;
 	}
 
 	@Override
 	public void remove(T elemento) {
-		// TODO Auto-generated method stub
+
+		Nodo<T> nuevoNodo = new Nodo<T>(elemento);
+		if (head == null) {
+			
+			System.out.println("Elemento no encontrado");
+			
+		} else {
+			Nodo<T> actual = head;
+			while (actual.siguiente != elemento) {
+				actual = actual.siguiente;
+			}
+			actual.siguiente = nuevoNodo;
+			nuevoNodo.anterior = actual;
+			tail = nuevoNodo;
+		}
 		
 	}
 
@@ -90,7 +153,7 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 
 	@Override
 	public int size() {
-		
+
 		int tamaño = 1;
 
 		if(head == null) {
@@ -104,13 +167,13 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 		}
 
 		return tamaño;
-		
+
 	}
 
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -124,7 +187,7 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public String toString() {
 
 
