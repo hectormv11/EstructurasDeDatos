@@ -98,25 +98,26 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 		}
 		Nodo<T> actual = head;
 		if(index ==  0) {
-			
+
 			devolver = actual.getValor();
 			head = actual.siguiente;
-			
+
 		}else if(index == size()-1){
-			
+
 			devolver = tail.getValor();
 			actual = tail.anterior;
 			actual.siguiente = null;
 			tail = actual;
-			
-			
+
+
 		}else {
 			while (vueltas != size()) {
-				if(vueltas == index) {
+				if(vueltas == index-1) {
 
 					devolver = actual.getValor();
 					actual.siguiente = actual.siguiente.siguiente;
-					
+					actual.siguiente.siguiente.anterior = actual;
+
 				}
 				actual = actual.siguiente;
 				vueltas++;
@@ -127,27 +128,38 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 
 	@Override
 	public void remove(T elemento) {
-
-		Nodo<T> nuevoNodo = new Nodo<T>(elemento);
-		if (head == null) {
-			
-			System.out.println("Elemento no encontrado");
-			
-		} else {
-			Nodo<T> actual = head;
-			while (actual.siguiente != elemento) {
-				actual = actual.siguiente;
-			}
-			actual.siguiente = nuevoNodo;
-			nuevoNodo.anterior = actual;
-			tail = nuevoNodo;
-		}
 		
+		int vueltas = 0;
+
+		if (head.getValor() == elemento) {
+			head = head.siguiente;
+		}else if(tail.getValor() == elemento) {
+			tail.anterior.siguiente = null;
+			tail = tail.anterior;
+		}else {
+		
+			Nodo<T> actual = head;
+
+			while (vueltas != size()-1) {
+				if(actual.siguiente.getValor() == elemento) {
+
+					actual.siguiente = actual.siguiente.siguiente;
+					actual.siguiente.anterior = actual;
+					break;
+
+				}
+				actual = actual.siguiente;
+				vueltas++;
+			}
+		}
+
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if(head == null) {
+			return true;
+		}
 		return false;
 	}
 
@@ -172,24 +184,50 @@ public class DoubleLinkedListHector<T> implements DoubleLinkedList<T>{
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		
+		head = null;
+		tail = null;
 
 	}
 
 	@Override
 	public boolean contains(T elemento) {
-		// TODO Auto-generated method stub
+		int vueltas = 0;
+		Nodo<T> actual = head;
+		while (vueltas != size()) {
+			if(actual.getValor() == elemento) {
+
+				return true;
+
+			}
+			actual = actual.siguiente;
+			vueltas++;
+		}
+
 		return false;
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Object[] array = new Object[size()];
+
+		int vuelta = 0;
+
+		Nodo<T> actual = head;
+		array[vuelta] = actual.getValor();
+		while (actual.siguiente != null) {
+
+			array[vuelta] = actual.getValor();
+			actual = actual.siguiente;
+			vuelta++;
+
+		}
+		array[vuelta] = actual.getValor();
+		return array;
 	}
 
 	public String toString() {
-
 
 		StringBuffer str = new StringBuffer();
 
