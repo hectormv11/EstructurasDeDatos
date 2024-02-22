@@ -107,11 +107,11 @@ public class HectorPila <T> implements Pila <T> {
 	}
 
 	@Override
-	public boolean contains(T elemento) {
+	public boolean contains(T elemento){
 
 		for (int i = 0; i < pila.length; i++) {
 
-			if(pila[i] != null && pila[i] == elemento) {
+			if(pila[i] == elemento) {
 				return true;
 			}
 
@@ -122,6 +122,7 @@ public class HectorPila <T> implements Pila <T> {
 	@Override
 	public Object[] toArray() {
 
+
 		Object[] array = new Object[pila.length];
 
 		for (int j = 0; j < array.length; j++) {
@@ -130,6 +131,7 @@ public class HectorPila <T> implements Pila <T> {
 
 		return array;
 	}
+
 
 	public String toString() {
 
