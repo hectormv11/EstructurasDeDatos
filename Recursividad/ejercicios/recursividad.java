@@ -10,8 +10,12 @@ public class recursividad {
 
 		//System.out.println(obtenerCantidad(444444));
 
-		System.out.println(potencias(3,3));
-		System.out.println(3^7);
+		//System.out.println(potencias(3,3));
+
+		//invertir(123);
+		
+		//System.out.println(palabraOrdenada("1234"));
+		System.out.println(palindromo("radar"));
 	}
 
 	public static int sumaN(int n) {
@@ -71,6 +75,47 @@ public class recursividad {
 		}
 
 		return n * potencias(n ,n2-1);
+	}
+
+	public static void invertir(int n) {
+
+
+		if (n < 10) {
+			System.out.print(n);
+		} else {
+
+			System.out.print(n % 10);
+			invertir(n / 10);
+
+		}
+	}
+
+	public static boolean palabraOrdenada(String str) {
+
+		if (str.length() <= 1) {
+            return true;
+        } else {
+            if (str.charAt(0) <= str.charAt(1)) {
+                return palabraOrdenada(str.substring(1));
+            } else {
+                return false;
+            }
+        }
+		
+	}
+	
+	public static boolean palindromo(String str) {
+
+		if (str.length() == 1 || str.length() == 0) {
+            return true;
+        } else {
+            if (str.charAt(0) == str.charAt(str.length()-1)) {
+                return palindromo(str.substring(1,str.length()-1));
+            } else {
+                return false;
+            }
+        }
+		
 	}
 
 }
